@@ -3,17 +3,22 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible"
-    content="IE=edge">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stopwatch</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
 </head>
 
 <body>
   <div class="flex f-col">
     <div class="title">Stopwatchs</div>
+    <div>IMPORTANT NOTE: If you share your full link (including the '?id=[letters]') then anyone who clicks on it will
+      be able to control your timers. Please share this link instead: https://cloud-watch.anb.codes
+    </div>
 
     <label for="group">User id</label>
     <input id="group" name="group" type="text">
@@ -23,11 +28,9 @@
     </div>
 
     <div class="flex f-row">
-      <button id="add-stopwatch"
-        class="primary">Add
+      <button id="add-stopwatch" class="primary">Add
         stopwatch</button>
-      <button id="add-with-id"
-        class="outline black">
+      <button id="add-with-id" class="outline black">
         Add from id
       </button>
     </div>
@@ -35,14 +38,10 @@
     <template id="stopwatch">
       <div class="flex stopwatch">
         <div class="time"></div>
-        <button
-          class="action solid start-button"></button>
-        <button
-          class="action orange outline reset-button">Reset</button>
-        <button
-          class="action red solid delete-button">Delete</button>
-        <button
-          class="action black outline show-id-button">Show
+        <button class="action solid start-button"></button>
+        <button class="action orange outline reset-button">Reset</button>
+        <button class="action red solid delete-button">Delete</button>
+        <button class="action black outline show-id-button">Show
           ID</button>
       </div>
     </template>

@@ -45,7 +45,14 @@ elements.groupInput.addEventListener("blur", () => {
   if (elements.groupInput.value === "") {
     elements.groupInput.value = getRandomString(40);
   }
-  localStorage.setItem("userId", elements.groupInput.value);
+  const URLCopy = new URL(window.location.toString());
+
+  userId = elements.groupInput.value;
+
+  URLCopy.searchParams.set('id', userId);
+
+  window.history.pushState(null, '', URLCopy);
+
   getStopwatches();
 });
 
@@ -194,15 +201,26 @@ const createStopwatchElement = (stopwatch: LocalStopwatch) => {
   return stopwatch;
 };
 
-if (
-  localStorage.getItem("userId") === null ||
-  localStorage.getItem("userId")?.trim() === ""
-) {
-  const uid = getRandomString(40);
-  localStorage.setItem("userId", uid);
+const params = new URLSearchParams(window.location.search);
+
+const URLCopy = new URL(window.location.toString());
+
+let userId = params.get('id');
+if (!userId) {
+  userId = getRandomString(40);
+  URLCopy.searchParams.set('id', userId)
+  window.history.pushState(null, '', URLCopy);
 }
 
-elements.groupInput.value = localStorage.getItem("userId") || "";
+// if (
+//   localStorage.getItem("userId") === null ||
+//   localStorage.getItem("userId")?.trim() === ""
+// ) {
+//   const uid = getRandomString(40);
+//   localStorage.setItem("userId", uid);
+// }
+
+elements.groupInput.value = userId;
 
 const updateStopwatch = async (stopwatch: LocalStopwatch) => {
   await fetch(`/stopwatch/${stopwatch.id}`, {
@@ -240,8 +258,7 @@ const update = () => {
 };
 
 const socket = new WebSocket(
-  `${
-    window.location.protocol === "https:" ? "wss" : "ws"
+  `${window.location.protocol === "https:" ? "wss" : "ws"
   }://${window.location.host}/ws`,
 );
 
