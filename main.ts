@@ -160,4 +160,4 @@ app.use(async (ctx) => {
   });
 });
 
-app.listen({ port: 8080 });
+app.listen({ port: +(Deno.args[1] || 8080) });
