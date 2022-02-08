@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible"
+    content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="flex f-col">
+    <div class="title">Stopwatchs</div>
+
+    <label for="group">User id</label>
+    <input id="group" name="group" type="text">
+
+    <div id="stopwatches">
+
+    </div>
+
+    <div class="flex f-row">
+      <button id="add-stopwatch"
+        class="primary">Add
+        stopwatch</button>
+      <button id="add-with-id"
+        class="outline black">
+        Add from id
+      </button>
+    </div>
+
+    <template id="stopwatch">
+      <div class="flex stopwatch">
+        <div class="time"></div>
+        <button
+          class="action solid start-button"></button>
+        <button
+          class="action orange outline reset-button">Reset</button>
+        <button
+          class="action red solid delete-button">Delete</button>
+        <button
+          class="action black outline show-id-button">Show
+          ID</button>
+      </div>
+    </template>
+  </div>
+  <script src="./index.js"></script>
+</body>
+
+</html>

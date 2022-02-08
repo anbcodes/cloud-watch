@@ -1,0 +1,113 @@
+button {
+    color: var(--text-color);
+    border: var(--border-color) solid 1px;
+    border-radius: 0.25rem;
+    padding: 8px;
+    margin: 0px 1rem 0px 0px;
+    cursor: pointer;
+    transition: 0.10s;
+    background-color: var(--background-color);
+    flex-grow: 0;
+}
+
+div {
+    padding: 0px;
+    margin: 0px;
+}
+
+button:hover {
+    background-color: var(--background-color-hover);
+}
+
+button:active {
+    background-color: var(--background-color-active);
+}
+
+.primary {
+    --background-color: rgb(30, 255, 22);
+    --background-color-hover: rgb(37, 211, 31);
+    --background-color-active: rgb(34, 180, 29);
+    --border-color: rgb(255, 255, 255);
+    --text-color: rgb(0, 0, 0);
+}
+
+.flex {
+    display: flex;
+}
+
+.f-row {
+    flex-direction: row;
+}
+
+.f-col {
+    flex-direction: column;
+}
+
+.title {
+    font-size: xx-large;
+    padding-bottom: 10px;
+}
+
+body {
+    padding: 20px;
+}
+
+.time {
+    text-align: center;
+    padding-right: 5rem;
+    font-size: x-large;
+    display: flex;
+    align-content: center;
+}
+
+#stop-btn {
+    --color: red;
+    --color-hover: rgb(207, 0, 0);
+    --color-active: rgb(194, 0, 0);
+}
+
+#start-btn {
+    --color: rgb(0, 226, 0);
+    --color-hover: rgb(0, 194, 0);
+    --color-active: rgb(0, 175, 0);
+}
+
+.outline {
+    --border-color: var(--color);
+    --text-color: var(--color);
+    --background-color: white;
+    --background-color-hover: rgb(226, 226, 226);
+    --background-color-active: rgb(190, 190, 190);
+}
+
+.solid {
+    --border-color: rgba(0, 0, 0, 0);
+    --background-color: var(--color);
+    --background-color-hover: var(--color-hover);
+    --background-color-active: var(--color-active);
+}
+
+.orange {
+    --color: orange;
+    --color-hover: rgb(218, 141, 0);
+    --color-active: rgb(170, 111, 0);
+}
+
+.red {
+    --color: red;
+    --color-hover: rgb(207, 0, 0);
+    --color-active: rgb(194, 0, 0);
+}
+
+.black {
+    --color: black;
+    --color-hover: black;
+    --color-active: black;
+}
+
+.stopwatch {
+    align-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
