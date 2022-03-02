@@ -41,6 +41,26 @@ const elements = {
   createWithId: ensure<HTMLButtonElement>("#add-with-id"),
 };
 
+const params = new URLSearchParams(window.location.search);
+
+const URLCopy = new URL(window.location.toString());
+
+let userId = params.get('id');
+
+if (!userId) {
+  const localStorageUserid = localStorage.getItem('userId');
+  if (localStorageUserid && localStorageUserid !== 'null') {
+    userId = localStorageUserid;
+  } else {
+    userId = getRandomString(40);
+  }
+  URLCopy.searchParams.set('id', userId);
+  localStorage.setItem('userId', userId)
+  window.history.pushState(null, '', URLCopy);
+}
+
+elements.groupInput.value = userId;
+
 elements.groupInput.addEventListener("blur", () => {
   if (elements.groupInput.value === "") {
     elements.groupInput.value = getRandomString(40);
@@ -73,7 +93,7 @@ const newStopwatch = async (id: string) => {
 
   stopWatchGroupData.ids.push(id);
 
-  fetch(`/stopwatchgroup/${localStorage.getItem("userId")}`, {
+  fetch(`/stopwatchgroup/${userId}`, {
     method: "PUT",
     body: JSON.stringify(stopWatchGroupData),
   });
@@ -99,7 +119,7 @@ let stopWatchGroupData: StopwatchGroup = {
 };
 
 const getStopwatches = async () => {
-  const res = await fetch(`/stopwatchgroup/${localStorage.getItem("userId")}`);
+  const res = await fetch(`/stopwatchgroup/${userId}`);
   const data = await res.json();
   stopWatchGroupData = data;
 
@@ -176,7 +196,7 @@ const createStopwatchElement = (stopwatch: LocalStopwatch) => {
         v !== stopwatch.id
       );
 
-      fetch(`/stopwatchgroup/${localStorage.getItem("userId")}`, {
+      fetch(`/stopwatchgroup/${userId}`, {
         method: "PUT",
         body: JSON.stringify(stopWatchGroupData),
       });
@@ -201,26 +221,6 @@ const createStopwatchElement = (stopwatch: LocalStopwatch) => {
   return stopwatch;
 };
 
-const params = new URLSearchParams(window.location.search);
-
-const URLCopy = new URL(window.location.toString());
-
-let userId = params.get('id');
-if (!userId) {
-  userId = getRandomString(40);
-  URLCopy.searchParams.set('id', userId)
-  window.history.pushState(null, '', URLCopy);
-}
-
-// if (
-//   localStorage.getItem("userId") === null ||
-//   localStorage.getItem("userId")?.trim() === ""
-// ) {
-//   const uid = getRandomString(40);
-//   localStorage.setItem("userId", uid);
-// }
-
-elements.groupInput.value = userId;
 
 const updateStopwatch = async (stopwatch: LocalStopwatch) => {
   await fetch(`/stopwatch/${stopwatch.id}`, {
