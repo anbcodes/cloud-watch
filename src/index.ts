@@ -62,6 +62,9 @@ if (!userId) {
 elements.groupInput.value = userId;
 
 elements.groupInput.addEventListener("blur", () => {
+  if (!confirm('Change User Id? (This causes you to loose access to your stopwatches)')) {
+    return;
+  }
   if (elements.groupInput.value === "") {
     elements.groupInput.value = getRandomString(40);
   }
